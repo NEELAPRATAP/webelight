@@ -1,0 +1,22 @@
+version: '3'
+services:
+  web:
+    image: 9985525347/nodejs-web
+    container_name: node
+    restart: always
+    build: .
+    ports:
+      - '5000:5000'
+    links:
+      - redis
+      - mongo
+  mongo:
+    container_name: myapp-mongo
+    image: 'mongo:4'
+    ports:
+      - '27017:27017'
+  redis:
+    container_name: myapp-redis
+    image: 'redis:4.0.11'
+    ports:
+      - '6379:6379'
